@@ -11,7 +11,7 @@ import org.junit.runners.parameterized.TestWithParameters;
 import java.util.List;
 
 /**
- * Created by ANRU on 8/21/2015.
+ * Created by Anton Rustamov (arustamov) on 8/21/2015.
  */
 public class ParameterizedTestNameRunnerFactory implements ParametersRunnerFactory {
     @Override

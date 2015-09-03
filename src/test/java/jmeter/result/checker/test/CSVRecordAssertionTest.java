@@ -11,7 +11,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 
 /**
- * Created by ANRU on 8/19/2015.
+ * Created by Anton Rustamov (arustamov) on 8/19/2015.
  */
 @RunWith(Parameterized.class)
 @Parameterized.UseParametersRunnerFactory(ParameterizedTestNameRunnerFactory.class)
