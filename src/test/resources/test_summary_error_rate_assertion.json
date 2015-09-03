@@ -1,0 +1,11 @@
+[
+    {
+		"description":"Verify Total error rate",
+		"keyHeaderName":"sampler_label",
+		"keyMatcher":"equalToIgnoringCase",
+		"keyHeaderValue":"total",
+		"assertHeaderName":"aggregate_report_error%",
+		"assertMatcher":"equalTo",
+		"assertHeaderValue":"0.0"
+	}
+]
