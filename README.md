@@ -17,7 +17,7 @@ go to target and run java -jar jmeter-result-summary-checker-1.1.0.jar --result-
 
 2. Maven:
 
-mvn test -DresultFile=$PATH_TO_JMETER_RESULTS_SUMMARY_CSV_FILE -DassertionFile=$PATH_TO_JMETER_RESULTS_SUMMARY_ASSERTION_JSON_FILE
+mvn site -DresultFile=$PATH_TO_JMETER_RESULTS_SUMMARY_CSV_FILE -DassertionFile=$PATH_TO_JMETER_RESULTS_SUMMARY_ASSERTION_JSON_FILE
 
 How to generate JMeter results summary:
 
