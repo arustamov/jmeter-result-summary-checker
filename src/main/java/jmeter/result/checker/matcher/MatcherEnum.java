@@ -3,6 +3,9 @@ package jmeter.result.checker.matcher;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
@@ -41,6 +44,14 @@ public enum MatcherEnum {
         @Override
         public <T> void assertMatches(T actual, T expected) {
             Matcher<String> matcher = Matchers.endsWith(String.valueOf(expected));
+            assertThat(String.valueOf(actual), matcher);
+        }
+    },
+    STRING_CONTAINS_IN_ORDER("stringContainsInOrder") {
+        @Override
+        public <T> void assertMatches(T actual, T expected) {
+            List<String> stringsInOrder = Arrays.asList(String.valueOf(expected).split(" "));
+            Matcher<String> matcher = Matchers.stringContainsInOrder(stringsInOrder);
             assertThat(String.valueOf(actual), matcher);
         }
     },
