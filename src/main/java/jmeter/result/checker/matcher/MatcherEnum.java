@@ -14,73 +14,81 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public enum MatcherEnum {
     EQUAL_TO("equalTo") {
         @Override
-        public <T> void assertMatches(T actual, T expected) {
-            Matcher<T> matcher = Matchers.equalTo(expected);
+        public void assertMatches(String actual, String expected) {
+            Matcher<String> matcher = Matchers.equalTo(expected);
             assertThat(actual, matcher);
         }
     },
     EQUAL_TO_IGNORING_CASE("equalToIgnoringCase") {
         @Override
-        public <T> void assertMatches(T actual, T expected) {
-            Matcher<String> matcher = Matchers.equalToIgnoringCase(String.valueOf(expected));
-            assertThat(String.valueOf(actual), matcher);
+        public void assertMatches(String actual, String expected) {
+            Matcher<String> matcher = Matchers.equalToIgnoringCase(expected);
+            assertThat(actual, matcher);
         }
     },
     CONTAINS_STRING("containsString") {
         @Override
-        public <T> void assertMatches(T actual, T expected) {
-            Matcher<String> matcher = Matchers.containsString(String.valueOf(expected));
-            assertThat(String.valueOf(actual), matcher);
+        public void assertMatches(String actual, String expected) {
+            Matcher<String> matcher = Matchers.containsString(expected);
+            assertThat(actual, matcher);
         }
     },
     STARTS_WITH("startsWith") {
         @Override
-        public <T> void assertMatches(T actual, T expected) {
-            Matcher<String> matcher = Matchers.startsWith(String.valueOf(expected));
-            assertThat(String.valueOf(actual), matcher);
+        public void assertMatches(String actual, String expected) {
+            Matcher<String> matcher = Matchers.startsWith(expected);
+            assertThat(actual, matcher);
         }
     },
     ENDS_WITH("endsWith") {
         @Override
-        public <T> void assertMatches(T actual, T expected) {
-            Matcher<String> matcher = Matchers.endsWith(String.valueOf(expected));
-            assertThat(String.valueOf(actual), matcher);
+        public void assertMatches(String actual, String expected) {
+            Matcher<String> matcher = Matchers.endsWith(expected);
+            assertThat(actual, matcher);
         }
     },
     STRING_CONTAINS_IN_ORDER("stringContainsInOrder") {
         @Override
-        public <T> void assertMatches(T actual, T expected) {
-            List<String> stringsInOrder = Arrays.asList(String.valueOf(expected).split(" "));
+        public void assertMatches(String actual, String expected) {
+            List<String> stringsInOrder = Arrays.asList(expected.split(" "));
             Matcher<String> matcher = Matchers.stringContainsInOrder(stringsInOrder);
-            assertThat(String.valueOf(actual), matcher);
+            assertThat(actual, matcher);
         }
     },
     GREATER_THAN("greaterThan") {
         @Override
-        public <T> void assertMatches(T actual, T expected) {
-            Matcher<Double> matcher = Matchers.greaterThan(Double.valueOf(String.valueOf(expected)));
-            assertThat(Double.valueOf(String.valueOf(actual)), matcher);
+        public void assertMatches(String actual, String expected) {
+            actual = actual.replaceAll("%","");
+            expected = expected.replaceAll("%","");
+            Matcher<Double> matcher = Matchers.greaterThan(Double.valueOf(expected));
+            assertThat(Double.valueOf(actual), matcher);
         }
     },
     GREATER_THAN_OR_EQUAL_TO("greaterThanOrEqualTo") {
         @Override
-        public <T> void assertMatches(T actual, T expected) {
-            Matcher<Double> matcher = Matchers.greaterThanOrEqualTo(Double.valueOf(String.valueOf(expected)));
-            assertThat(Double.valueOf(String.valueOf(actual)), matcher);
+        public void assertMatches(String actual, String expected) {
+            actual = actual.replaceAll("%","");
+            expected = expected.replaceAll("%","");
+            Matcher<Double> matcher = Matchers.greaterThanOrEqualTo(Double.valueOf(expected));
+            assertThat(Double.valueOf(actual), matcher);
         }
     },
     LESS_THAN("lessThan") {
         @Override
-        public <T> void assertMatches(T actual, T expected) {
-            Matcher<Double> matcher = Matchers.lessThan(Double.valueOf(String.valueOf(expected)));
-            assertThat(Double.valueOf(String.valueOf(actual)), matcher);
+        public void assertMatches(String actual, String expected) {
+            actual = actual.replaceAll("%","");
+            expected = expected.replaceAll("%","");
+            Matcher<Double> matcher = Matchers.lessThan(Double.valueOf(expected));
+            assertThat(Double.valueOf(actual), matcher);
         }
     },
     LESS_THAN_OR_EQUAL_TO("lessThanOrEqualTo") {
         @Override
-        public <T> void assertMatches(T actual, T expected) {
-            Matcher<Double> matcher = Matchers.lessThanOrEqualTo(Double.valueOf(String.valueOf(expected)));
-            assertThat(Double.valueOf(String.valueOf(actual)), matcher);
+        public void assertMatches(String actual, String expected) {
+            actual = actual.replaceAll("%","");
+            expected = expected.replaceAll("%","");
+            Matcher<Double> matcher = Matchers.lessThanOrEqualTo(Double.valueOf(expected));
+            assertThat(Double.valueOf(actual), matcher);
         }
     };
 
@@ -94,7 +102,7 @@ public enum MatcherEnum {
         return matcherMethodName;
     }
 
-    public abstract <T> void assertMatches(T actual, T expected);
+    public abstract void assertMatches(String actual, String expected);
 
     public static MatcherEnum fromMatcherMethodName(String methodName) {
         for (MatcherEnum m : MatcherEnum.values()) {
